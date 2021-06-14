@@ -13,7 +13,10 @@ window.onload = function () {
 
     //Overlays
     let overlays = {
-        Wasserstände: L.featureGroup()
+        Wasserstände: L.featureGroup(),
+        Temperatur: L.featureGroup(),
+        Schneehöhe: L.featureGroup(),
+
     }
 
     let layerControl = L.control.layers({
@@ -26,7 +29,9 @@ window.onload = function () {
             L.tileLayer.provider("BasemapAT.overlay")
         ])
     }, {
-        "Wasserstände": overlays.Wasserstände
+        "Wasserstände": overlays.Wasserstände,
+        "Temperatur": overlays.Temperatur,
+        "Schneehöhe": overlays.Schneehöhe
     }).addTo(hydromap);
 
     L.control.scale({
@@ -47,6 +52,81 @@ window.onload = function () {
     // Attribution
     hydromap.attributionControl.addAttribution("<a href='https://wiski.tirol.gv.at/hydro/ogd/OGD_W.csv'>Land Tirol</a>")
 
+    //Rainviewer
+    L.control.rainviewer({ 
+        position: 'bottomright',
+        nextButtonText: '>',
+        playStopButtonText: 'Play/Stop',
+        prevButtonText: '<',
+        positionSliderLabelText: "Hour:",
+        opacitySliderLabelText: "Opacity:",
+        animationInterval: 500,
+        opacity: 0.75
+    }).addTo(hydromap);
+    
+    // Temperatur + Schneehöhe
+    let getColor = (value, colorRamp) => {
+        for (let rule of colorRamp) {
+            if (value >= rule.min && value < rule.max) {
+                return rule.col;
+            }
+        }
+        return "black";
+    };
+    
+    let newLabel = (coords, options) => {
+        let color = getColor(options.value, options.colors);
+            let label = L.divIcon({
+            html: `<div style="background-color: ${color}">${options.value}</div>`,
+            className: "text-label"
+        })
+        let marker = L.marker([coords[1], coords[0]], {
+            icon: label,
+            title: `${options.station} (${coords[2]} m.ü.A)`
+        });
+        return marker;
+    };
+    let awsUrl = "https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson";
+
+fetch(awsUrl).then(response => response.json())
+    .then(json => {
+        console.log("Daten konvertiert: ", json);
+        for (station of json.features) {
+            console.log("Station: ", station);
+            let marker = L.marker([
+                station.geometry.coordinates[1],
+                station.geometry.coordinates[0]
+            ]);
+            let formattedDate = new Date(station.properties.date);
+            marker.bindPopup(`
+    <h3>${station.properties.name}</h3>
+    <ul>
+        <li>Datum: ${formattedDate.toLocaleString("de")} Uhr</li>
+        <li>Seehöhe: ${station.geometry.coordinates[2] ||"-"} m.ü.A.</li>
+        <li>Temperatur: ${station.properties.LT||"-"} °C</li>
+    </ul>
+    <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
+    `);
+            //Schneehöhe
+            if (typeof station.properties.HS == 'number') {
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.HS.toFixed(0),
+                    colors: COLORS.Schneehöhe,
+                    station: station.properties.name
+                });
+                marker.addTo(overlays.Schneehöhe);
+            }
+             //Lufttemperatur 
+             if (typeof station.properties.LT == 'number') {
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.LT.toFixed(1),
+                    colors: COLORS.Temperatur,
+                    station: station.properties.name
+                });
+                marker.addTo(overlays.Temperatur);
+            }
+        }
+    });
 
     /*CSV mit Papa Parse
     Papa.parse("https://wiski.tirol.gv.at/hydro/ogd/OGD_W.csv", {
@@ -221,3 +301,4 @@ window.onload = function () {
 
 
 }
+
