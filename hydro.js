@@ -44,7 +44,7 @@ window.onload = function () {
         minimized: true
     }).addTo(hydromap);
 
-    //Overlays nach Laden anzeigen
+    //nur Wasserstandsdaten nach Laden anzeigen
     overlays.Wasserstände.addTo(hydromap);
 
     // Attribution
