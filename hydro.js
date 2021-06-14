@@ -97,12 +97,13 @@ fetch(awsUrl).then(response => response.json())
             ]);
             let formattedDate = new Date(station.properties.date);
             marker.bindPopup(`
-    <h3>${station.properties.name}</h3>
-    <ul>
-        <li>Datum: ${formattedDate.toLocaleString("de")} Uhr</li>
-        <li>Seehöhe: ${station.geometry.coordinates[2] ||"-"} m.ü.A.</li>
-        <li>Temperatur: ${station.properties.LT||"-"} °C</li>
-    </ul>
+    <strong>${station.properties.name}</strong><hr>
+        <strong>Temperatur: </strong> ${station.properties.LT||"-"} °C <br>
+        <strong>Schneehöhe: </strong> ${station.properties.HS||"-"} cm <br>
+        <strong>Datum: </strong>${formattedDate.toLocaleString("de")} Uhr <br>
+        <strong>Seehöhe: </strong> ${station.geometry.coordinates[2] ||"-"} m.ü.A.
+
+
     <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
     `).addTo(overlays.Wetterdaten);
         }
