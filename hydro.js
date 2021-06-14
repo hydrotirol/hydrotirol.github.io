@@ -29,7 +29,7 @@ window.onload = function () {
         ])
     }, {
         "Wasserstände": overlays.Wasserstände,
-        "Wetterdaten" : overlays.Wetterdaten
+        "Wetterdaten": overlays.Wetterdaten
     }).addTo(hydromap);
 
     L.control.scale({
@@ -51,7 +51,7 @@ window.onload = function () {
     hydromap.attributionControl.addAttribution("<a href='https://wiski.tirol.gv.at/hydro/ogd/OGD_W.csv'>Land Tirol</a>")
 
     //Rainviewer
-    L.control.rainviewer({ 
+    L.control.rainviewer({
         position: 'bottomright',
         nextButtonText: '>',
         playStopButtonText: 'Play/Stop',
@@ -61,7 +61,7 @@ window.onload = function () {
         animationInterval: 500,
         opacity: 0.75
     }).addTo(hydromap);
-    
+
     // Temperatur + Schneehöhe
     let getColor = (value, colorRamp) => {
         for (let rule of colorRamp) {
@@ -71,10 +71,10 @@ window.onload = function () {
         }
         return "black";
     };
-    
+
     let newLabel = (coords, options) => {
         let color = getColor(options.value, options.colors);
-            let label = L.divIcon({
+        let label = L.divIcon({
             html: `<div style="background-color: ${color}">${options.value}</div>`,
             className: "text-label"
         })
@@ -86,17 +86,17 @@ window.onload = function () {
     };
     let awsUrl = "https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson";
 
-fetch(awsUrl).then(response => response.json())
-    .then(json => {
-        console.log("Daten konvertiert: ", json);
-        for (station of json.features) {
-            console.log("Station: ", station);
-            let marker = L.marker([
-                station.geometry.coordinates[1],
-                station.geometry.coordinates[0]
-            ]);
-            let formattedDate = new Date(station.properties.date);
-            marker.bindPopup(`
+    fetch(awsUrl).then(response => response.json())
+        .then(json => {
+            console.log("Daten konvertiert: ", json);
+            for (station of json.features) {
+                console.log("Station: ", station);
+                let marker = L.marker([
+                    station.geometry.coordinates[1],
+                    station.geometry.coordinates[0]
+                ]);
+                let formattedDate = new Date(station.properties.date);
+                marker.bindPopup(`
     <strong>${station.properties.name}</strong><hr>
         <strong>Temperatur: </strong> ${station.properties.LT||"-"} °C <br>
         <strong>Schneehöhe: </strong> ${station.properties.HS||"-"} cm <br>
@@ -106,8 +106,8 @@ fetch(awsUrl).then(response => response.json())
 
     <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
     `).addTo(overlays.Wetterdaten);
-        }
-    })
+            }
+        })
 
     /*CSV mit Papa Parse
     Papa.parse("https://wiski.tirol.gv.at/hydro/ogd/OGD_W.csv", {
@@ -282,4 +282,3 @@ fetch(awsUrl).then(response => response.json())
 
 
 }
-
