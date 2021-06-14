@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HydroTirol</title>
+    <script src="/Wasser/js/csv_to_json.js"></script>
+    <script src="/Wasser/js/papaparse.min.js"></script>
+
+
+</head>
+
+
+<body>
+
+
+
+    <script>
+        const config = {
+            delimiter: ";", // auto-detect
+            newline: "", // auto-detect
+            quoteChar: '"',
+            escapeChar: '"',
+            header: false,
+            transformHeader: undefined,
+            dynamicTyping: false,
+            preview: 0,
+            encoding: "UTF-8",
+            worker: false,
+            comments: false,
+            step: undefined,
+            complete: undefined,
+            error: undefined,
+            download: false,
+            downloadRequestHeaders: undefined,
+            downloadRequestBody: undefined,
+            skipEmptyLines: false,
+            chunk: undefined,
+            chunkSize: undefined,
+            fastMode: undefined,
+            beforeFirstChunk: undefined,
+            withCredentials: undefined,
+            transform: undefined,
+            delimitersToGuess: [',', '\t', '|', ';', Papa.RECORD_SEP, Papa.UNIT_SEP]
+        };
+
+        window.onload = function () {
+
+
+            var StandortFile = 'data/stationenWGS.csv';
+
+            async function getStandort() {
+                let response = await fetch(StandortFile)
+                let csv = await response.text()
+                const data = Papa.parse(csv, config);
+
+
+                console.log(data);
+                document.write(JSON.stringify(data));
+                // console.log(csv)
+            }
+            getStandort();
+
+            var Url = "https://wiski.tirol.gv.at/hydro/ogd/OGD_W.csv";
+
+            function getFromAPI(url, callback) {
+
+                var obj;
+                fetch(url)
+                    .then(res => res.text())
+                    .then(data => obj = data)
+                    .then(() => callback(obj))
+            }
+
+            getFromAPI(Url, getData);
+            var Standortwerte = [];
+
+            function getData(arrOfObjs) {
+
+                const data = Papa.parse(arrOfObjs, config);
+                let Anzeige = data.data;
+                Anzeige.shift();
+                Anzeige.pop();
+                var LastTreffer = Anzeige.slice(-1).pop()
+                var SuchZeit = LastTreffer[4];
+
+                var NeustesArray = Anzeige.filter(function (el) {
+                    return el[4] === SuchZeit;
+
+                });
+
+                console.log(NeustesArray);
+                document.write(JSON.stringify(NeustesArray[0]));
+
+
+                // document.write(JSON.stringify(NeustesArray[0]));
+            }
+
+
+
+            /*
+                    async function getCSV() {
+                        let response = await fetch('data/OGD_W.csv')
+                        let csv = await response.text()
+                        const data = Papa.parse(csv, config);
+
+
+                        // console.log(data);
+                        //  document.write(JSON.stringify(data));
+                        // console.log(csv)
+                    }
+
+                    getCSV();
+                    console.log(window.data);*/
+        }
+    </script>
+
+    <div id="myDiv"></div>
+
+</body>
+
+</html>

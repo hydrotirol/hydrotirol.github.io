@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Roboto+Condensed:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet-src.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>HydroTirol</title>
+</head>
+
+<body>
+    <header>
+        <img class="banner" src="images/index/header_A.jpg" alt="Abenstimmung am Inn in Innsbruck">
+        <nav>
+            <adress>
+                <a href="mailto:maximilian.w.ender@student.uibk.ac.at" target="_blank"><i
+                        class="fas fa-envelope-square mr-3"></i>Maximilian Ender</a>
+                <a href="mailto:a.keuschnigg@student.uibk.ac.at" target="_blank"><i
+                        class="fas fa-envelope-square mr-3"></i>Anna Keuschnigg</a>
+                <a href="https://github.com/enderkeuschnigg/hydrotirol.github.io" target="_blank"><i
+                        class="fab fa-github mr-3"></i>Github Repos</a>
+            </adress>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <h1>Fließgewässer in Tirol</h1>
+        <h2>Visualisierung hydrologischer und raumplanerischer Daten</h2>
+        <hr>
+        <p>
+            Aufgrund der zentralalpinen Lage des Bundeslandes Tirols ist die Gefahr vor Naturgefahren allgegenwärtig. Da
+            sich die Siedlungsräume in Hinsicht auf die überwiegend steile Topographie zumeist auf die Talräume
+            konzentriert, ist die Bevölkerung speziell gegenüber großflächigen Hochwasserereignisse besonders resilient.
+            Kommt es in solchen Bereich zu einer Überflutung infolge eines Hochwasserereignisses, ist der ohnehin
+            bereits eingeschränkte Kultur- und Siedlungsraum stark betroffen und es entstehen drastische Schäden. Als
+            Beispiel hierfür können die Ereignisse im August 2005 oder im Juni 2013 genannt werden. Die
+            Auslösemechanismen für die Enstehung solcher Hochwasserereignisse sind durchaus divers, können grundsätzlich
+            jedoch immer auf eine außergewöhnliche Niederschlagssituation zurückgeführt werden. Aber auch die
+            Schneeschmelze kann zu Hochwasser an den großen Talflüssen führen, wie beispielsweise das Ereignis im Juni
+            2019 infolge eines besonders schneereichen Winters. <br> In
+            diesem Projekt werden hydrologische Daten, im Besonderen Niederschlags-, Abflussdaten und raumplanerische
+            Daten, wie z.B. die verschiedenen Bereiche des Gefahrenzonenplans, überblicksartig dargestellt. Weiters
+            sollen einige große Talflüsse, wie z.B. Inn, Lech, Ötztaler Ache und Ziller, genauer hinsichtlich ihrer
+            hydrologischer Eigenschaften portraitiert werden.
+        </p>
+        <figure>
+            <img src="images/index/main_inn.jpg" alt="hochwasserführender Inn in Innsbruck">
+            <figcaption><i class="fasfa-camera mr-3"><strong>Der Inn während des Hochwasserereignisses im Juni
+                        2019</strong></i></figcaption>
+        </figure>
+        <hr>
+        <h2>Projektinhalte</h2>
+        <ul>
+            <li>
+                <a href="hydro.html" target="_blank"><strong>Darstellung hydrologischer Daten</strong></a>
+                <br>Übersichskarte, auf der
+                hydrologische Daten (z.B. Abfluss- und Niederschlagsdaten) des Bundeslandes Tirol visualiert werden.
+
+            </li>
+            <br>
+            <li>
+                <a href="rp.html" target="_blank"><strong>Darstellung raumplanerischer Daten: </strong></a> <br>
+                Übersichskarte,
+                auf der raumplanerische Daten im Kontext alpiner Naturgefahren (z.B. Gefahrenzonenplan) visualiert
+                werden.
+            </li>
+            <br>
+            <li>
+                <a href="flussportraits.html" target="_blank"><strong>Flussportraits</strong></a> <br> Übersichtskarte,
+                auf der
+                ausgewählte größere Talflüsse des Bundeslandes Tirols hinsichtlich ihrer hydrologischer Eigenschaften
+                präsentiert werden.
+            </li>
+        </ul>
+        <figure>
+            <img src="images/index/main_lech.jpg" alt="frei fließender Lech im Außerfern">
+            <figcaption><i class="fasfa-camera mr-3"><strong>Der Lech im Tiroler Außerfern, eine der letzten unberührten
+                        Wildflusslandschaften im Alpenraum</strong></i></figcaption>
+        </figure>
+        <hr>
+        <h2>Begriffserklärungen</h2>
+        <ul>
+            <li>
+                <strong>Abfluss: </strong>
+                Jenes Wasservolumen V, das in einem Fließgewässer in einer bestimmten Zeiteinheit t die
+                Querschnittsfläche A durchströmt.
+            </li>
+            <br>
+            <li>
+                <strong>Hochwasser: </strong> Eine zeitlich begrenzte Überschreitung von bestimmten
+                Abflussschwellenwerten als Folgeerscheinung meteorologischer Ereignisse, geht zumeist mit der
+                Überschwemmung von Binnenland einher.
+            </li>
+            <br>
+            <li>
+                <strong>Niederwasser: </strong>
+                Eine zeitlich begrenzte Unterschreitung von bestimmten Abflussschwellenwerten als Folgeerscheinung
+                meteorologischer Ereignisse, wie z.B. Dürre.
+            </li>
+            <br>
+            <li>
+                <strong>HQ100: </strong> Als HQ100 wird ein sog. "hunderjährliches" Hochwasser verstanden (auch als
+                Jahrhunderthochwasser bezeichnet). Dies definiert ein Abflussereignis, welches statistisch gesehen genau
+                einmal in 100 Jahren auftritt.
+            </li>
+            <br>
+            <li>
+                <strong>Hochwasserbemessung: </strong>
+                Ingeniertechnische ermittelte und modellierte Hochwasserscheitelabflüsse innerhalb einer Zeitperiode t,
+                d.h. wie oft tritt ein bestimmter Abflusswert in einer bestimmten Zeitspanne auf (z.B. 100-jährliches
+                Hochwasser hat eine exakte Eintrittswahrscheinlichkeit von 1/100).
+            </li>
+            <br>
+
+        </ul>
+        <figure>
+            <img src="images/index/main_zillertal.jpg" alt="Stausee im Zillertal">
+            <figcaption><i class="fasfa-camera mr-3"><strong>Die hohen alpinen Abflussspenden werden, wie hier im
+                        Zillertal, großflächig zur Energieerzeugung genutzt.</strong></i></figcaption>
+        </figure>
+        <hr>
+        <h2>Literatur und weitere Informationen</h2>
+        <p>
+            Bundesministerium für Landwirtschaft, Regionen und Tourismus: eHyd. <a
+                href="https://ehyd.gv.at/">https://ehyd.gv.at/</a> (zuletzt abgerufen am 21.05.2021).<br>
+            Bundesministerium für Landwirtschaft, Regionen und Tourismus: Leben mit Naturgefahren. <a
+                href="https://www.naturgefahren.at/karten.html">https://www.naturgefahren.at/karten.html</a>
+            (zuletzt abgerufen am 21.05.2021).<br>
+            Bundesministerium für Land- und Forstwirtschaft, Umwelt- und Wasserwirschaft (2016): Technische Richtlinien
+            für die Gefahrenzonenplanung gemäß § 42a WRG (Fassung 1. Juli 2016). BMLFUW, Wien.<br>
+            Fohrer, N. (Hrsg.); Bormann, H.; Miegel, K.; Casper, M.; Bronster, A.; Schumann, A. & Weiler, M. (2016):
+            Hydrologie. Haupt, Bern.<br>
+            Muhar, S.; Muhar, A.; Egger, G. & Siegrist, D. (Hrsg.) (2019): Flüsse der Alpen. Vielfalt in Natur und
+            Kultur. Haupt, Bern.<br>
+            Wikipedia: <a href="wikipedia.org">wikipedia.org</a> (zuletzt abgerufen am 10.06.2021).<br>
+            <strong>Bildquellen: </strong> <br>
+            Pixabay: <a href="https://pixabay.com/de/">pixabay.com</a> (zuletzt abgerufen am 10.06.2021). <br>
+            Eigene Bilder
+
+
+        </p>
+    </main>
+
+
+</body>
+
+</html>

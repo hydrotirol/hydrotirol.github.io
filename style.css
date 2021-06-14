@@ -1,0 +1,115 @@
+body {
+    max-width: 1440px;
+    margin: auto;
+    font-family: "Open Sans", sans-serif;
+}
+
+header {
+    max-width: 1440px;
+    text-align: center;
+}
+
+header p {
+    text-align: right;
+    font-weight: bold;
+    font-size: 0.8em;
+    padding-right: 1em;
+    margin-top: -2em;
+}
+
+.white,
+.white a:link,
+.white a:visited {
+    color: white !important
+}
+
+header nav img {
+    border-radius: 25%;
+}
+
+a:link,
+a:visited {
+    color: black
+}
+
+header address {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+main {
+    max-width: 70%;
+    margin: auto;
+}
+
+main h1 {
+    text-align: center;
+}
+
+main h2 {
+    text-align: center;
+}
+
+main p {
+    margin-top: 1.5em;
+    text-align: justify;
+    font-size: 1.2em;
+
+}
+
+main ul br {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+main br {
+    margin-bottom: 1em;
+}
+main figure {
+    margin-left: 0em;
+    width: 100%;
+}
+
+main figure img {
+    width: 100%;
+    border: 1px solid black;
+    
+}
+
+#map {
+    height: 360px;
+    width: 100%;
+    border: 1px solid gray;
+}
+
+main ul {
+    text-align: justify;
+    font-size: 1.2em;
+    list-style-type: circle;
+}
+
+footer .next {
+    float: right;
+}
+
+footer .back {
+    float: left;
+}
+
+footer {
+    padding: 1em 0 3em 0;
+}
+
+.mr-3 {
+    margin-right: 0.3em;
+}
+
+.ml-3 {
+    margin-left: 0.3em;
+}
+
+@media screen and (max-width: 900px) {
+    main {
+        max-width: 90%;
+    }
+}

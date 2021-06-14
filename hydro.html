@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Roboto+Condensed:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet-src.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mwasil/Leaflet.Rainviewer/leaflet.rainviewer.css" />
+    <script src="https://cdn.jsdelivr.net/gh/mwasil/Leaflet.Rainviewer/leaflet.rainviewer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.12.0/leaflet-providers.min.js"
+        integrity="sha512-LixflAm9c0/qONbz9F1Ept+QJ6QBpb7wUlPuyv1EHloTVgwSK8j3yMV3elnElGQcv7Y5QTFlF/FqyeE/N4LnKQ=="
+        crossorigin="anonymous"></script>
+    <!-- Leaflet Fullscreen-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/2.0.0/Control.FullScreen.css"
+        integrity="sha512-KQk/GTCcAywe4iEOhnZ6ZmWDNv/3NvOE6f0iUvrNVCX/oD7+sPXAeDP90aOX3EXHmerC6gDYUlUBaSd4hxjWEw=="
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/2.0.0/Control.FullScreen.js"
+        integrity="sha512-TaNrKSd5TOm4PfgJMFYkDpQ1X8GmqXBlh+Kmk83Mfrcx9sjTzqI1zcZd0n0xpdJevfPL7voAcbblrUaYx+LM1g=="
+        crossorigin="anonymous"></script>
+    <!--Leaflet Minimap-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"
+        integrity="sha512-efbAfGnrnjA+hLwOLu91W034fBGPsMwZMVCTwLUI2PDX/m7rOiuhYZ+D2mZ8rKcpC/I/7pdgoL8T4eYvMHNoQg=="
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"
+        integrity="sha512-ceQPs2CHke3gSINLt/JV37W1rfJOM64yuH999hnRhTP7tNtcSBp5hlTKhn8CEIhsFweSBrZMPVotAKjoyxGWNg=="
+        crossorigin="anonymous"></script>
+    <!-- Papa parse -->
+    <script src="papaparse.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script defer src="hydro.js"></script>
+
+    <title>HydroTirol</title>
+</head>
+
+<body>
+    <header>
+        <img class="banner" src="images/hydro/header.png" alt="Spätsommerlicher Blick auf Inn und Nordkette">
+        <nav>
+            <adress>
+                <a href="mailto:maximilian.w.ender@student.uibk.ac.at" target="_blank"><i
+                        class="fas fa-envelope-square mr-3"></i>Maximilian Ender</a>
+                <a href="mailto:a.keuschnigg@student.uibk.ac.at" target="_blank"><i
+                        class="fas fa-envelope-square mr-3"></i>Anna Keuschnigg</a>
+                <a href="https://github.com/hydrotirol/hydrotirol.github.io" target="_blank"><i
+                        class="fab fa-github mr-3"></i>Github Repos</a>
+            </adress>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <h1>Fließgewässer in Tirol</h1>
+        <h2>Übersicht über hydrologische Daten</h2>
+        <hr>
+
+        <div id="map"></div>
+
+        <p> Auf der folgenden Karte werden die offiziellen Wasserstandsdaten aller hydrologischen Stationen des Bundeslandes Tirols in Echtzeit dargestellt.</p>
+
+        <hr>
+        <h2>Weitere Projektinhalte</h2>
+        <ul>
+            <li>
+                <a href="index.html" target="_blank"><strong>Überblick</strong></a> <br> Übersichtsseite, auf der
+                allgemeine Informationen und Inhalte bezüglich der dargestellten Projektinhalte gegeben werden.
+            </li>
+            <br>
+            <li>
+                <a href="rp.html" target="_blank"><strong>Darstellung raumplanerischer Daten: </strong></a>
+                <br> Übersichskarte,
+                auf der raumplanerische Daten im Kontext alpiner Naturgefahren (z.B. Gefahrenzonenplan) visualiert
+                werden.
+            </li>
+            <br>
+            <li>
+                <a href="flussportraits.html" target="_blank"><strong>Flussportraits</strong></a> <br>
+                Übersichtskarte, auf der
+                ausgewählte größere Talflüsse des Bundeslandes Tirols hinsichtlich ihrer hydrologischer
+                Eigenschaften
+                präsentiert werden.
+            </li>
+        </ul>
+    </main>
+
+</body>

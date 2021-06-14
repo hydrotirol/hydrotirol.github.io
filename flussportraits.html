@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Roboto+Condensed:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet-src.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mwasil/Leaflet.Rainviewer/leaflet.rainviewer.css" />
+    <script src="https://cdn.jsdelivr.net/gh/mwasil/Leaflet.Rainviewer/leaflet.rainviewer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.12.0/leaflet-providers.min.js"
+        integrity="sha512-LixflAm9c0/qONbz9F1Ept+QJ6QBpb7wUlPuyv1EHloTVgwSK8j3yMV3elnElGQcv7Y5QTFlF/FqyeE/N4LnKQ=="
+        crossorigin="anonymous"></script>
+    <!-- Leaflet Fullscreen-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/2.0.0/Control.FullScreen.css"
+        integrity="sha512-KQk/GTCcAywe4iEOhnZ6ZmWDNv/3NvOE6f0iUvrNVCX/oD7+sPXAeDP90aOX3EXHmerC6gDYUlUBaSd4hxjWEw=="
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/2.0.0/Control.FullScreen.js"
+        integrity="sha512-TaNrKSd5TOm4PfgJMFYkDpQ1X8GmqXBlh+Kmk83Mfrcx9sjTzqI1zcZd0n0xpdJevfPL7voAcbblrUaYx+LM1g=="
+        crossorigin="anonymous"></script>
+    <!--Leaflet Minimap-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"
+        integrity="sha512-efbAfGnrnjA+hLwOLu91W034fBGPsMwZMVCTwLUI2PDX/m7rOiuhYZ+D2mZ8rKcpC/I/7pdgoL8T4eYvMHNoQg=="
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"
+        integrity="sha512-ceQPs2CHke3gSINLt/JV37W1rfJOM64yuH999hnRhTP7tNtcSBp5hlTKhn8CEIhsFweSBrZMPVotAKjoyxGWNg=="
+        crossorigin="anonymous"></script>
+    <!-- OGD_HYDRO Datenobjekt -->
+    <script src="OGD_HYDRO.js"></script>
+    <!--Farbdefinitionen-->
+    <script src="colors.js"></script>
+    <script defer src="fp.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>HydroTirol</title>
+    
+</head>
+
+<body>
+    <header>
+        <img class="banner" src="images/flussportraits/header.png"
+            alt="Herbstliche Abendstimmung in Innsbruck mit Blick innaufwärts">
+        <nav>
+            <adress>
+                <a href="mailto:maximilian.w.ender@student.uibk.ac.at" target="_blank"><i
+                        class="fas fa-envelope-square mr-3"></i>Maximilian Ender</a>
+                <a href="mailto:a.keuschnigg@student.uibk.ac.at" target="_blank"><i
+                        class="fas fa-envelope-square mr-3"></i>Anna Keuschnigg</a>
+                <a href="https://github.com/hydrotirol/hydrotirol.github.io" target="_blank"><i
+                        class="fab fa-github mr-3"></i>Github Repos</a>
+            </adress>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <h1>Fließgewässer in Tirol</h1>
+        <h2>Flussportraits</h2>
+        <hr>
+
+        <div id="map"></div>
+
+        <hr>
+        <h2>Portraitierte Flüsse</h2>
+        <ul>
+            <li>
+                <strong>Inn: </strong>
+                Der Inn entspringt im schweizerischen Engadin und mündet bei Pasau in die Donau. Er weist ein
+                glazio-nivales Abflussregime auf. In Innsbruck beträgt der mittlere Abfluss MQ 165 m³/s, die mittlere
+                Abflussspende Mq 28,6 l/(s*km²). Hochwasserereignisse können sowohl durch intensive Niederschläge (z.B.
+                August 2005) als auch, aufgrund des hochgelegenen Einzugsgebietes, durch Schneeschmelzprozesse (z.B. Juni 2019) ausgelöst
+                werden.
+            </li>
+            <br>
+            <li>
+                <strong>Isel: </strong>
+                Die Isel entspringt dem Umbalkees und kann als Gletscherfluss definiert werden, weist somit auch ein
+                (nivo-)glaziales Abflussregime auf. Sie mündet in Lienz in die Drau. Als meteorologisch relevant gilt die
+                alpensüdseitige Lage des Flusses. Hochwasserereignisse können wiederum durch Regenereignise (z.B.
+                Spätsommer 2020) aber auch durch die Schneeschmelze ausgelöst werden.
+            </li>
+            <br>
+            <li>
+                <strong>Lech: </strong>
+                Der Lech entspringt in Vorarlberg und mündet in Bayern in die Donau. Er weist ein nivales Abflussregime
+                auf. In Hinsicht auf Hochwasserereignisse wird der Wildfluss maßgeblich durch charakteristische alpennordseitige Staulagen beeinflusst (z.B. Hochwasserereignisse 1999, 2005). Als ökologisch besonders gelten die Wildflusslandschaften im Tiroler Außerfern, welche in den Alpen als Rarität eingeordnet werden
+                können. Hochwasserereignisse treten am Lech überwiegend durch intensie Niederschläge auf.
+            </li>
+            <br>
+            <li>
+                <strong>Ötztaler Ache: </strong>
+                Die Ötztaler Ache kann als rein glazial beeinflusster Fluss definiert werden. Sie durchfließt das
+                namensgebende Tiroler Ötztal, welches aufgrund der nahezu kompletten Niederschlagsabschirmung als charakteristische inneralpine Trockeninsel gilt.
+                Hochwasserereignisse können in der Vergangenheit vor allem auf Ausbrüche des Rofener Eisstausees
+                zurückgeführt werden. Weiters ist die Ötztaler Ache als einziger größerer Fluss Nordtirols ohne größere
+                energiewirtschaftliche Eingriffe zu nennen.
+            </li>
+            <br>
+            <li>
+                <strong>Ziller: </strong>
+                Der Ziller durchfließt das Zillertal und wird mehrheitlich durch die Gletscherschmelze aus den oberen Bereichen seines Einzugsgebietes beeinflusst. Jedoch spielt auch die Schneeschmelze im Abflussregime eine zentrale Rolle. Er weist für seine überwiegend zentralalpine Lage z.B. im VErgleich zur Ötztaler Ache eine höhere Abflussspende auf, was auf höhere Niederschlagsraten zurückgeführt werden kann, da sich in diesem Bereich bereits wieder Nordstaulagen bemerkbar machen. Das Einzugsgebiet desZillers wird stark durch diverse Kraftwerke beeinflusst, es werden zahlreiche landschaftsprägende Speicherseen und Kraftwerke in den Zillertaler Alpen betrieben.
+            </li>
+        </ul>
+        <hr>
+        <h2>Weitere Projektinhalte</h2>
+        <ul>
+            <li>
+                <a href="index.html" target="_blank"><strong>Überblick</strong></a> <br> Übersichtsseite, auf der
+                allgemeine Informationen und Inhalte bezüglich der dargestellten Projektinhalte gegeben werden.
+            </li>
+            <br>
+            <li>
+                <a href="hydro.html" target="_blank"><strong>Darstellung hydrologischer Daten</strong></a>
+                <br>Übersichskarte, auf der
+                hydrologische Daten (z.B. Abfluss- und Niederschlagsdaten) des Bundeslandes Tirol visualiert werden.
+            </li>
+            <br>
+            <li>
+                <a href="rp.html" target="_blank"><strong>Darstellung raumplanerischer Daten: </strong></a> <br>
+                Übersichskarte,
+                auf der raumplanerische Daten im Kontext alpiner Naturgefahren (z.B. Gefahrenzonenplan) visualiert
+                werden.
+            </li>
+        </ul>
+    </main>
+
+
+</body>
+
+</html>
