@@ -48,13 +48,12 @@ let drawportraits = (geoJsonData) => {
         },
         onEachFeature: (Feature, layer) => {
             console.log(Feature.properties.GEW_NAME);
-            /*layer.bindPopup(`<strong> Gewässer: </strong>${feature.properties.GEW_NAME}</strong><hr>
-            <p>Abflussregime: ${feature.properties.Regime}</p>
-            <p>Länge: ${feature.properties.lange} km </p>
-            <p>mittlere Abflussspende Mq: ${feature.properties.mq} </p>
-            <p>mittlerer Abfluss MQ: ${feature.properties.MQ_1}</p>
-            <p>Kraftwerksbeeinflusst: ${feature.properties.kraftwerk}</p>
-            `)*/
+            layer.bindPopup(`<strong> Gewässer: ${Feature.properties.GEW_NAME}</strong>
+            <p>Abflussregime: ${Feature.properties.Regime} </p>
+            <p>Lauflänge in Tirol: ${Feature.properties.lange} km </p>
+            <p>mittlere Abflussspende Mq: ${Feature.properties.Mq} </p>
+            <p>Kraftwerksbeeinflusst: ${Feature.properties.kraftwerk}</p>
+            `)
         },
         attribution: "Land Tirol"
     }).addTo(overlays.Flussportraits);
