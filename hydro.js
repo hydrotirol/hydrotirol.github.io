@@ -63,34 +63,11 @@ window.onload = function () {
     }).addTo(hydromap);
 
     // Temperatur + Schneehöhe
-    let getColor = (value, colorRamp) => {
-        for (let rule of colorRamp) {
-            if (value >= rule.min && value < rule.max) {
-                return rule.col;
-            }
-        }
-        return "black";
-    };
-
-    let newLabel = (coords, options) => {
-        let color = getColor(options.value, options.colors);
-        let label = L.divIcon({
-            html: `<div style="background-color: ${color}">${options.value}</div>`,
-            className: "text-label"
-        })
-        let marker = L.marker([coords[1], coords[0]], {
-            icon: label,
-            title: `${options.station} (${coords[2]} m.ü.A)`
-        });
-        return marker;
-    };
     let awsUrl = "https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson";
 
     fetch(awsUrl).then(response => response.json())
         .then(json => {
-            console.log("Daten konvertiert: ", json);
             for (station of json.features) {
-                console.log("Station: ", station);
                 let marker = L.marker([
                     station.geometry.coordinates[1],
                     station.geometry.coordinates[0]
@@ -109,68 +86,7 @@ window.onload = function () {
             }
         })
 
-    /*CSV mit Papa Parse
-    Papa.parse("https://wiski.tirol.gv.at/hydro/ogd/OGD_W.csv", {
-        download: true,
-        complete: function(results) {
-            //console.log(results)
-                console.log("Station: ",
-                station);
-                let stationdraw =
-                [results.data[96],
-                results.data[192], results.data[288],
-                results.data[384], results.data[480],
-                results.data[576], results.data[672],
-                results.data[768], results.data[864],
-                results.data[960], results.data[1065],
-                results.data[1152], results.data[1248],
-                results.data[1344], results.data[1440],
-                results.data[1536], results.data[1632],
-                results.data[1728], results.data[1824],
-                results.data[1920], results.data[2016],
-                results.data[2112], results.data[2208],
-                results.data[2304], results.data[2400],
-                results.data[2496], results.data[2592],
-                results.data[2688], results.data[2784],
-                results.data[2880], results.data[2976],
-                results.data[3072], results.data[3168],
-                results.data[3264], results.data[3360],
-                results.data[3456], results.data[3552],
-                results.data[3648], results.data[3744],
-                results.data[3840], results.data[3936],
-                results.data[4032], results.data[4128],
-                results.data[4224], results.data[4320],
-                results.data[4416], results.data[4512],
-                results.data[4608], results.data[4896],
-                results.data[4992],
-                results.data[5088],
-                results.data[5184],
-                results.data[5280],
-                results.data[5376],
-                results.data[5472],
-                results.data[5568],
-                results.data[5664],
-                results.data[5760],
-                results.data[6048],
-                results.data[6144],
-                results.data[6240],
-                results.data[6336],
-                results.data[6432],
-                results.data[6528],
-                results.data[6624],
-                results.data[6720],
-                results.data[6816],
-                results.data[6912],
-                results.data[7008],
-                results.data[7104],
-                results.data[7200],
-                results.data[7296],
-                results.data[7392],
-                results.data[7488],
-                results.data[7584]
-            ]
-            console.log(stationdraw);*/
-
+    // Wasserstandsdaten
 
     const config = {
         delimiter: ";", // auto-detect
@@ -255,6 +171,8 @@ window.onload = function () {
         var LastTreffer = Anzeige.slice(-1).pop()
         var SuchZeit = LastTreffer[4];
 
+        console.log(arrOfObjs);
+
         var NeustesArray = Anzeige.filter(function (el) {
             return el[4] === SuchZeit;
 
@@ -271,9 +189,10 @@ window.onload = function () {
             let Info = '<p><strong>Stationsname: </strong>' + NeustesArray[i][0] + '</p>';
             let Info2 = '<p><strong>Gewässer: </strong>' + NeustesArray[i][2] + '</p>';
             let Info4 = '<p><strong>Wasserstand W: </strong>' + NeustesArray[i][5] + ' ' + NeustesArray[i][6] + '</p>' + "<hr>";
-            let Info3 = '<p><strong>Zeitstempel: </strong>' + formattedDate.toLocaleString('de') + ' Uhr' + '</p>';
+            let Info5 = '<p><strong>Seehöhe: </strong>' + NeustesArray[i][7] + ' m.ü.A.' + '</p>';
+            let Info3 = '<p><strong>Datum: </strong>' + formattedDate.toLocaleString('de') + ' Uhr' + '</p>';
             let Info1 = '<p><strong>Stationsnummer: </strong>' + NeustesArray[i][1] + '</p>';
-            Info = Info.concat(Info2, Info4, Info3, Info1);
+            Info = Info.concat(Info2, Info4, Info5, Info3, Info1);
             L.marker(Cords[i]).addTo(overlays.Wasserstände).bindPopup(Info);
 
         }
