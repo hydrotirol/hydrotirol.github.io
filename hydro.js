@@ -73,8 +73,8 @@ window.onload = function () {
                     station.geometry.coordinates[0]
                 ]);
                 let formattedDate = new Date(station.properties.date);
-                marker.bindPopup(`
-    <strong>${station.properties.name}</strong><hr>
+                marker.bindPopup(
+                    `<strong>${station.properties.name}</strong><hr>
         <strong>Temperatur: </strong> ${station.properties.LT||"-"} °C <br>
         <strong>Schneehöhe: </strong> ${station.properties.HS||"-"} cm <br>
         <strong>Datum: </strong>${formattedDate.toLocaleString("de")} Uhr <br>

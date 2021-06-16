@@ -76,6 +76,10 @@ main figure img {
     
 }
 
+body img {
+    width: 100%, 
+}
+
 #map {
     height: 360px;
     width: 100%;
